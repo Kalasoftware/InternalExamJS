@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application </title>
+    <script>
+        var radioValue // data is directing coming from index.js as radio is dynamically created ,
+        function validForm() {
+            var vFlag = true;// flag for form validation
+            let fname = document.forms["myForm"]["firstname"]
+            let ferr = document.getElementById("firstnameerr")
+            let lname = document.forms["myForm"]["lastname"]
+            let lerr = document.getElementById("lastnameerr")
+            let mobile = document.forms["myForm"]["mobilein"]
+            let moerr = document.getElementById("mobileerr")
+            let email = document.forms["myForm"]["mailin"]
+            let mailerr = document.getElementById("mailerr")
+            let linkdin = document.forms["myForm"]["linkdin"]
+            let linkerr = document.getElementById("linkdinerr")
+            let quali = document.getElementById("postselect")
+            let qerr = document.getElementById("querrr")
+            let radioerr = document.getElementById("radioerr")
+            
+
+            if (!namecheck(fname, ferr)) {
+                console.log("not valid bro");
+
+            }
+            if (!namecheck(lname, lerr)) {
+                vFlag = false;
+            }
+            if (!mobilecheck(mobile, moerr)) {
+                vFlag = false;
+            }
+        
+            if (!emailchecK(email, mailerr)) {
+            vFlag = false;
+             }
+
+             if (!urlvalid(linkdin, linkerr)) {
+            vFlag = false;
+            }
+
+            if (comboBox(quali, qerr)) {
+            vFlag = false;
+             }
+
+             if (!validRadio(radioerr)) {
+            vFlag = false;
+            }
+
+            
+            // validating teh form 
+
+             if (vFlag ) {
+                alert("Validated") // remove if its neccesary 
+                // storing the data into the localstorag
+                storeFormData(fname.value,lname.value,mobile.value,email.value,linkdin.value,quali.value,radioValue)
+                // console.log("date stored")
+                return false;
+            } else {
+                return false;
+            conosle.log("not validared")
+            }
+
+            // defining the function to store the data into it 
+            return false;
+    }
+      
+    
+    </script>
+</head>
+
+<body>
+    <form name="myForm" method="post" onsubmit="return validForm()">
+        Enter the First Name : <input name="firstname" oninput="validForm()"><span id="firstnameerr"> </span><br />
+        Enter the Last Name : <Input name="lastname" oninput="validForm()"><span id="lastnameerr"> </span><br />
+        Enter the Mobile No : <input name="mobilein" oninput="validForm()"> <span id="mobileerr"> </span><br />
+        Enter the Mail Address : <input name="mailin" oninput="validForm()"><span id="mailerr"> </span> <br />
+        Enter the linkdin profile URL : <input name="linkdin" oninput="validForm()"> <span id="linkdinerr">
+        </span><br />
+        <!-- Selcting the degree using seelction -->
+        Select the Degree :
+        <select id="postselect" onchange="validForm()">
+            <option value=""> Select Post </option>
+            <option value="Bachloer"> Bachloer</option>
+            <option value="Master"> Master</option>
+        </select>
+        <span id="querrr"> </span>
+        <div id="radiocontiner"></div>
+        <span id="radioerr"></span>
+        <br/>
+        <button value="submit"> Submit</button>
+    </form>
+    <button onclick="showData(document.getElementById('showdatadiv'))"> Show Data </button>
+    <div id="showdatadiv">
+
+    </div>
+</body>
+<script src="index.js"> </script>
+
+</html>
