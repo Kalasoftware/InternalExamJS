@@ -72,6 +72,40 @@ function comboBox(ownbox,err)
         console.log(ans)
     }
 }
+
+function percheck(per,err){
+
+    if(!/^[0-9]{1,3}$/.test(per.value) || per.value < 0 || per.value > 100)
+    {
+        err.style.color ="red";
+        err.innerHTML ="Please Enter valid perceantage"
+        return false;   
+    }
+    else 
+    {
+        err.style.color="green"
+        err.innerHTML = "valid"
+        return true;
+    }
+}
+
+function gradec(grade,err)
+{
+    if(!/^[0-9]{1,2}$/.test(grade.value)|| grade.value < 0 || grade.value > 10)
+    {
+        err.style.color ="red";
+        err.innerHTML ="Please Enter valid grade"
+        return false;   
+    }
+    else 
+    {
+        err.style.color="green"
+        err.innerHTML = "valid"
+        return true;
+    }
+}
+
+
 // created dynamical radio button
 var radiocont = document.getElementById("radiocontiner")
 dynamicradio(radiocont)
@@ -122,6 +156,36 @@ function validRadio(err)
         return false;
     }
 }
+// calcuating teh points 
+function calScore(linkd,per,grade,comboVal,showPer){
+    var points = 0;
+    if(per.value>60)
+    {
+        points += 5;
+    }else 
+    {
+        points +=3;
+    }
+    if(linkd.value.trim() != ""){
+        points+=5;
+    }
+    if(grade.value>6)
+    {
+        points+=5;
+    }else 
+    {
+        points +=3;
+    }
+    if(comboVal.value=="Bachloer"){
+        points+=3;
+    }else 
+    {
+        points+=5;
+    }
+    showPer.innerHTML = `The Total Points is = ${points}`
+}
+
+
 // storing the data 
 function storeFormData(fname, lname, mobile, email, linkdin, quali,radiovalue) {
     let myFormdata = {
@@ -134,13 +198,14 @@ function storeFormData(fname, lname, mobile, email, linkdin, quali,radiovalue) {
         radiovalue : radiovalue
     };
     localStorage.setItem('myFormData', JSON.stringify(myFormdata));
+    document.cookie = `username=${fname}`
     console.log("stored data")
 }
 // getting the data 
 function showData(divele){
 
     var storedData = localStorage.getItem('myFormData')
-    if(storedData){
+    if(storedData){ // used template string for it 
         var formData = JSON.parse(storedData)
         divele.innerHTML = `<h4> Stored data</h4>
                             First Name = ${formData.firstname} <br>

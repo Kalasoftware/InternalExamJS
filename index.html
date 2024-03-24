@@ -22,7 +22,11 @@
             let quali = document.getElementById("postselect")
             let qerr = document.getElementById("querrr")
             let radioerr = document.getElementById("radioerr")
-            
+            let per = document.forms["myForm"]["per"]
+            let pererr = document.getElementById("pererr")
+            let grade = document.forms["myForm"]["grade"]
+            let gerr = document.getElementById("gradeerr")
+            let showPoint = document.getElementById("showPoints")
 
             if (!namecheck(fname, ferr)) {
                 console.log("not valid bro");
@@ -50,12 +54,22 @@
              if (!validRadio(radioerr)) {
             vFlag = false;
             }
-
+            if(!percheck(per,pererr)){
+                vFlag=false;
+            }
+            if(!gradec(grade,gerr))
+            {
+                vFlag=false;
+            }
             
+            
+
             // validating teh form 
 
              if (vFlag ) {
                 alert("Validated") // remove if its neccesary 
+                // showing the score 
+                calScore(linkdin,per,grade,quali,showPoint)
                 // storing the data into the localstorag
                 storeFormData(fname.value,lname.value,mobile.value,email.value,linkdin.value,quali.value,radioValue)
                 // console.log("date stored")
@@ -79,7 +93,9 @@
         Enter the Last Name : <Input name="lastname" oninput="validForm()"><span id="lastnameerr"> </span><br />
         Enter the Mobile No : <input name="mobilein" oninput="validForm()"> <span id="mobileerr"> </span><br />
         Enter the Mail Address : <input name="mailin" oninput="validForm()"><span id="mailerr"> </span> <br />
-        Enter the linkdin profile URL : <input name="linkdin" oninput="validForm()"> <span id="linkdinerr">
+        Enter the linkdin profile URL : <input name="linkdin" oninput="validForm()"> <span id="linkdinerr"> </span> <br/>
+        Enter the percerntage of 12th Grade : <input name="per" oninput="validForm()"> <span id="pererr"> </span> <br/>
+        Enter the grades of College Degree : <input name="grade" oninput="validForm()"> <span id="gradeerr"> </span><br/>
         </span><br />
         <!-- Selcting the degree using seelction -->
         Select the Degree :
@@ -92,12 +108,14 @@
         <div id="radiocontiner"></div>
         <span id="radioerr"></span>
         <br/>
-        <button value="submit"> Submit</button>
+        <button value="submit"> Submit</button> 
+        <button value="reset">Reset </button>
     </form>
     <button onclick="showData(document.getElementById('showdatadiv'))"> Show Data </button>
     <div id="showdatadiv">
 
     </div>
+    <span id="showPoints"> </span>
 </body>
 <script src="index.js"> </script>
 
