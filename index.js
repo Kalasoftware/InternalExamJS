@@ -131,6 +131,7 @@ function dynamicradio(radiocont)
     }
 }
 // validating the radio button
+var rdvalue;
 function validRadio(err)
 {
     var radioele = document.getElementsByName("education")
@@ -139,7 +140,7 @@ function validRadio(err)
     {
         if(radioele[i].checked)
         {
-            var radioValue = radioele[i];
+             rdvalue = radioele[i].value;
             radioC=true;
             break;
         }

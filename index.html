@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application </title>
     <script>
-        var radioValue // data is directing coming from index.js as radio is dynamically created ,
+        var rdvalue // data is directing coming from index.js as radio is dynamically created ,
         function validForm() {
             var vFlag = true;// flag for form validation
             let fname = document.forms["myForm"]["firstname"]
@@ -71,7 +71,7 @@
                 // showing the score 
                 calScore(linkdin,per,grade,quali,showPoint)
                 // storing the data into the localstorag
-                storeFormData(fname.value,lname.value,mobile.value,email.value,linkdin.value,quali.value,radioValue)
+                storeFormData(fname.value,lname.value,mobile.value,email.value,linkdin.value,quali.value,rdvalue)
                 // console.log("date stored")
                 return false;
             } else {
